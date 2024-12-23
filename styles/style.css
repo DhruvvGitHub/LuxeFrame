@@ -1,0 +1,241 @@
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.main-nav {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 0px;
+}
+
+.main-nav .nav-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    padding: 0px 38px;
+}
+
+nav h5 {
+    letter-spacing: 3px;
+    mix-blend-mode: difference;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-right .nav-circle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.hero-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hero-box .hero-title-mobile {
+    display: none;
+}
+
+.hero-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.hero-footer svg {
+    animation: heroFooterSvgAnimation 1s linear  infinite alternate;
+}
+
+@keyframes heroFooterSvgAnimation {
+    0% {
+        transform: translateY(0%);
+    }
+    100% {
+        transform: translateY(90%);
+    }
+}
+
+
+/* PROJECTS SECTION  */
+.projects-section-header {
+    display: flex;
+    padding: 160px 0px;
+    padding-bottom: 0px;
+}
+
+.projects-section .empty-div{
+    width: 40%;
+}
+
+.projects-section .text {
+    width: 60%;
+    padding-right: 110px;
+}
+
+.project-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    width: 100%;
+    background-color: red;
+    padding: 150px 0px;
+}
+
+.section-header {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.section-header-text {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.section-header-circle {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--green);
+}
+
+.project-cards-cards {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.project-cards-cards .card {
+    width: 49%;
+    height: 50vh;
+    background-color: blue;
+    flex-shrink: 0;
+}
+
+
+
+/* SERVICES SECTION  */
+.services-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    padding-bottom: 200px;
+}
+
+.services-div {
+    width: 100%;
+}
+
+.service {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 28px 0px;
+    border-bottom: 1px solid #222;
+    position: relative;
+    z-index: 3;
+    overflow: hidden;
+}
+
+.service::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: var(--green);
+    position: absolute;
+    top: 100%;
+    z-index: -1;
+    transition: all ease 0.3s;
+}
+
+.service:hover::before {
+    top: 0%;
+}
+
+.service-left {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
+
+
+/* ABOUT-US SECTION  */
+.about-us {
+    min-height: 100vh;
+    position: relative;
+}
+
+.about-us .lower-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.about-us .lower-container h3 {
+    font-size: 34px;
+    line-height: 40px;
+    font-family: light;
+    text-align: center;
+}
+
+.about-us .upper-container {
+    width: 100%;
+    min-height: 100vh;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    pointer-events: none;
+}
+
+.about-us .upper-container .row {
+    display: flex;
+    gap: 20px;
+}
+
+.about-us .upper-container .row .image-div {
+    width: 750px;
+    height: 500px;
+}
+
+.about-us .upper-container .row .image-div img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about-us .upper-container .row-2 {
+    transform: translateY(-10%);
+}

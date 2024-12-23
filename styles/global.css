@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+html,
+body {
+    color: var(--white);
+}
+
+html.lenis,
+html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+    pointer-events: none;
+}
+
+
+@font-face {
+    font-family: "light";
+    src: url(../fonts/Matter-Light.ttf);
+}
+
+@font-face {
+    font-family: "reg";
+    src: url(../fonts/Matter-Regular.ttf);
+}
+
+@font-face {
+    font-family: "med";
+    src: url(../fonts/Matter-Medium.ttf);
+}
+
+@font-face {
+    font-family: "semiBold";
+    src: url(../fonts/Matter-SemiBold.ttf);
+}
+
+
+/* Declaring CSS variables */
+:root {
+    --black: #121212;
+    --white: #FFFFFF;
+    --green: #E0FD60;
+    --text-grey: #999999;
+    --tertiary-black: #161616;
+
+}
+
+/* Declaring classes for font and buttons  */
+.nav-text {
+    font-size: 20px;
+    line-height: 25px;
+    font-family: reg;
+}
+
+.title {
+    font-size: 72px;
+    line-height: 85px;
+    font-family: reg;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.sub-title {
+    font-size: 34px;
+    letter-spacing: 1px;
+    line-height: 42px;
+    font-family: light;
+}
+
+.heading {
+    font-size: 18px;
+    line-height: 25px;
+    font-family: reg;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+.small-heading {
+    font-size: 16px;
+    line-height: 25px;
+    font-family: light;
+    color: var(--text-grey);
+}
+
+.tiny-heading {
+    font-size: 16px;
+    line-height: 25px;
+    font-family: light;
+    font-weight: 500;
+    color: var(--white);
+    letter-spacing: 1px;
+}
+
+.description {
+    font-size: 14px;
+    line-height: 21px;
+    font-family: reg;
+    color: var(--text-grey);
+}
+
+section {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--black);
+    padding: 20px 38px;
+}
+
+.cta-button {
+    width: fit-content;
+    padding: 24px 38px;
+    border: 1px solid var(--green);
+    border-radius: 50px;
+    background-color: transparent;
+    color: var(--green);
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 2;
+    font-weight: 500;
+    font-size: 16px;
+}
+
+.cta-button:hover {
+    color: var(--black);
+}
+
+.cta-button::after {
+    content: "";
+    width: 400px;
+    height: 400px;
+    background-color: var(--green);
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    border-radius: 50%;
+    transform: translate(-50%, 0%);
+    transition: all ease 0.3s;
+    z-index: -1;
+}
+
+.cta-button:hover::after {
+    width: 600px;
+    height: 600px;
+    top: 0%;
+    border-radius: 0px;
+}
