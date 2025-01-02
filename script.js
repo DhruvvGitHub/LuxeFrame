@@ -211,7 +211,7 @@ const aboutUsAnimation = () => {
             scroller: "body",
             start: "0% 70%",
             end: "0% 10%",
-            markers: true,
+            // markers: true,
             scrub: 2,
         },
     });
