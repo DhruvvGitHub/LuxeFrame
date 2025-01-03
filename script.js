@@ -1,18 +1,154 @@
-function lenis() {
-    const lenis = new Lenis();
+const loadingAnimation = () => {
+    const countElement = document.querySelector(".loader .counter h1");
+    let count = 0;
 
-    lenis.on("scroll", ScrollTrigger.update);
+    const interval = setInterval(() => {
+        countElement.innerHTML = count;
+        count++;
 
-    gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
+        if (count > 100) {
+            clearInterval(interval); 
+        }
+    }, 40); 
+
+
+    var tl = gsap.timeline()
+
+    tl
+    .to(".loader .counter h1", {
+        y: -400,
+        delay: .3
+    })
+    .to(".loader", {
+        top: "-100%",
+        delay: -1.5
+    })
+};
+loadingAnimation();
+
+
+
+const menuAnimation = () => {
+    const menuCircle = document.querySelector(".nav-circle");
+    let flag = false;
+
+    const tl = gsap.timeline({ paused: true });
+
+    tl.to(".nav-circle .svg-1", {
+        rotate: "50deg",
+        y: 6
+    }, "a")
+    .to(".nav-circle .svg-2", {
+        rotate: "-50deg",
+        y: -2.5
+    }, "a")
+    .to(".menu-bar", {
+        height: "100vh",
+        top: "0%",
+        ease: "power2.out",
+        duration: 0.7
+    })
+    .from(".menu-bar .menu-link a", {
+        y: -200,
+        stagger: 0.05,
+        delay: -0.3
+    })
+
+    menuCircle.addEventListener("click", () => {
+        if (!flag) {
+            tl.play(); 
+        } else {
+            tl.reverse(); 
+        }
+        flag = !flag; 
     });
+};
 
-    gsap.ticker.lagSmoothing(0);
-}
-lenis();
+menuAnimation();
 
 
-const servicesRenderAndAnimation = () => {
+
+document.addEventListener("DOMContentLoaded", () => {
+    const heroHoverAnimation = () => {
+        const container = document.querySelector(".hero-hover-images");
+
+        let imageIndex = 1;
+        let animationTimeout = null;
+        let currentlyPlaying = false;
+
+        // Track previous mouse position
+        let prevX = 0;
+        let prevY = 0;
+        const moveThreshold = 60; // Minimum distance to trigger a new item
+
+        function addNewItem(x, y) {
+            const newItem = document.createElement("div");
+            newItem.className = "item";
+            newItem.style.left = `${x}px`;
+            newItem.style.top = `${y}px`;
+
+            const img = document.createElement("img");
+            img.src = `./images/home-hover-images/${imageIndex}.webp`;
+            newItem.appendChild(img);
+            imageIndex = (imageIndex % 15) + 1;
+
+            container.appendChild(newItem);
+            manageItemLimit();
+        }
+
+        function manageItemLimit() {
+            while (container.children.length > 15) {
+                container.removeChild(container.firstChild);
+            }
+        }
+
+        function startAnimation() {
+            if (currentlyPlaying || container.children.length === 0) return;
+            currentlyPlaying = true;
+
+            gsap.to(".item", {
+                scale: 1,
+                opacity: 0,
+                duration: 0.5,
+                stagger: 2,
+                ease: "power.inOut",
+                onComplete: function () {
+                    this.targets().forEach((item) => {
+                        if (item.parentNode) {
+                            item.parentNode.removeChild(item);
+                        }
+                    });
+
+                    currentlyPlaying = false;
+                },
+            });
+        }
+
+        container.addEventListener("mousemove", (event) => {
+            const { pageX, pageY } = event;
+
+            // Check if the mouse has moved beyond the threshold
+            const distance = Math.sqrt((pageX - prevX) ** 2 + (pageY - prevY) ** 2);
+            if (distance > moveThreshold) {
+                prevX = pageX;
+                prevY = pageY;
+
+                clearTimeout(animationTimeout);
+                addNewItem(pageX, pageY);
+                animationTimeout = setTimeout(startAnimation, 200);
+            }
+        });
+    };
+
+    heroHoverAnimation();
+});
+
+
+
+
+
+
+servicesRenderAndAnimation = () => {
     const services = [
         {
             id: "01/",
@@ -23,6 +159,7 @@ const servicesRenderAndAnimation = () => {
         s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0
         c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z"/>
     </svg>`,
+            img: "https://images.unsplash.com/photo-1702126953171-4e23a032a073?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         },
         {
             id: "02/",
@@ -33,6 +170,7 @@ const servicesRenderAndAnimation = () => {
         s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0
         c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z"/>
     </svg>`,
+            img: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?q=80&w=1955&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         },
         {
             id: "03/",
@@ -43,6 +181,7 @@ const servicesRenderAndAnimation = () => {
         s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0
         c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z"/>
     </svg>`,
+            img: "https://plus.unsplash.com/premium_photo-1677343210638-5d3ce6ddbf85?q=80&w=1888&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         },
         {
             id: "04/",
@@ -53,6 +192,7 @@ const servicesRenderAndAnimation = () => {
         s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0
         c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z"/>
     </svg>`,
+        img: "https://images.unsplash.com/photo-1530023367847-a683933f4172?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         },
         {
             id: "05/",
@@ -63,6 +203,7 @@ const servicesRenderAndAnimation = () => {
         s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0
         c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z"/>
     </svg>`,
+            img: "https://images.unsplash.com/photo-1734490422581-cd3bd481c99e?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         },
         {
             id: "06/",
@@ -73,67 +214,8 @@ const servicesRenderAndAnimation = () => {
         s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0
         c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z"/>
     </svg>`,
-        },
-        {
-            id: "07/",
-            name: "Portrait",
-            arrow: `<svg fill="#FFFFFF" height="30" width="30" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-         viewBox="0 0 330 330" xml:space="preserve">
-    <path id="XMLID_27_" d="M15,180h263.787l-49.394,49.394c-5.858,5.857-5.858,15.355,0,21.213C232.322,253.535,236.161,255,240,255
-        s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0
-        c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z"/>
-    </svg>`,
-        },
-        {
-            id: "08/",
-            name: "Fashion",
-            arrow: `<svg fill="#FFFFFF" height="30" width="30" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-         viewBox="0 0 330 330" xml:space="preserve">
-    <path id="XMLID_27_" d="M15,180h263.787l-49.394,49.394c-5.858,5.857-5.858,15.355,0,21.213C232.322,253.535,236.161,255,240,255
-        s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0
-        c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z"/>
-    </svg>`,
-        },
-        {
-            id: "09/",
-            name: "Product",
-            arrow: `<svg fill="#FFFFFF" height="30" width="30" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-         viewBox="0 0 330 330" xml:space="preserve">
-    <path id="XMLID_27_" d="M15,180h263.787l-49.394,49.394c-5.858,5.857-5.858,15.355,0,21.213C232.322,253.535,236.161,255,240,255
-        s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0
-        c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z"/>
-    </svg>`,
-        },
-        {
-            id: "10/",
-            name: "Sports",
-            arrow: `<svg fill="#FFFFFF" height="30" width="30" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-         viewBox="0 0 330 330" xml:space="preserve">
-    <path id="XMLID_27_" d="M15,180h263.787l-49.394,49.394c-5.858,5.857-5.858,15.355,0,21.213C232.322,253.535,236.161,255,240,255
-        s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0
-        c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z"/>
-    </svg>`,
-        },
-        {
-            id: "11/",
-            name: "Real Estate",
-            arrow: `<svg fill="#FFFFFF" height="30" width="30" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-         viewBox="0 0 330 330" xml:space="preserve">
-    <path id="XMLID_27_" d="M15,180h263.787l-49.394,49.394c-5.858,5.857-5.858,15.355,0,21.213C232.322,253.535,236.161,255,240,255
-        s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0
-        c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z"/>
-    </svg>`,
-        },
-        {
-            id: "12/",
-            name: "Editorial",
-            arrow: `<svg fill="#FFFFFF" height="30" width="30" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
-         viewBox="0 0 330 330" xml:space="preserve">
-    <path id="XMLID_27_" d="M15,180h263.787l-49.394,49.394c-5.858,5.857-5.858,15.355,0,21.213C232.322,253.535,236.161,255,240,255
-        s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0
-        c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z"/>
-    </svg>`,
-        },
+            img: "https://plus.unsplash.com/premium_photo-1669842162407-abfc5f9e981e?q=80&w=1935&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+        }
     ];
     
     const servicesDiv = document.querySelector(".services-div");
@@ -146,38 +228,56 @@ const servicesRenderAndAnimation = () => {
                     <h3 class="sub-title">${service.name}</h3>
                 </div>
                 ${service.arrow}
+                <div class="service-image">
+                    <img src="${service.img}" alt="no-load">
+                </div>
             </div>
         `;
         servicesDiv.innerHTML += serviceDiv;
     });
     
-    const serviceElements = document.querySelectorAll(".services-div .service");
     
+    const serviceElements = document.querySelectorAll(".services-div .service");
+
     serviceElements.forEach((service) => {
         service.addEventListener("mouseenter", () => {
             service.style.color = "#000000";
     
             const svgElement = service.querySelector("svg path");
-            if (svgElement) {
                 svgElement.setAttribute("fill", "#000000");
-            }
     
             const id = service.querySelector(".service-left h5");
-            if (id) {
                 id.style.color = "gray";
-            }
     
             gsap.to(service.querySelector(".service-left"), {
-                transform: "translateX(12%)",
+                x: "12%",
+                duration: 0.5,
             });
     
             gsap.to(service.querySelector(".service svg"), {
                 rotate: "-40deg",
-                transform: "translateX(-200%)",
+                x: "-200%",
+                duration: 0.5,
             });
         });
+
+        service.addEventListener("mousemove", function (e) {
+            var rect = service.getBoundingClientRect();
+            var image = service.querySelector(".service-image")
+
+            gsap.to(image, {
+              width: "300px",
+              opacity: 1,
+              x: e.clientX - rect.left - 40,
+              y: e.clientY - rect.top - 80,
+              duration: 0.5,
+              ease: "power1.out",
+            });
+          });
     
         service.addEventListener("mouseleave", () => {
+            var image = service.querySelector(".service-image")
+
             service.style.color = "#FFFFFF";
     
             const svgElement = service.querySelector("svg path");
@@ -191,17 +291,28 @@ const servicesRenderAndAnimation = () => {
             }
     
             gsap.to(service.querySelector(".service-left"), {
-                transform: "translateX(0%)",
+                x: "0%",
+                duration: 0.5,
             });
     
             gsap.to(service.querySelector(".service svg"), {
                 rotate: "0deg",
-                transform: "translateX(0%)",
+                x: "0%",
+                duration: 0.5,
             });
+
+            gsap.to(image, {
+                width: "0px",
+                opacity: 0,
+                duration: 0.5,
+                ease: "power1.out",
+              });
         });
     });
+    
 }
 servicesRenderAndAnimation()
+
 
 
 const aboutUsAnimation = () => {
@@ -242,6 +353,8 @@ const aboutUsAnimation = () => {
         );
 };
 aboutUsAnimation();
+
+
 
 const swiperElementsRender = () => {
     const testimonials = [
@@ -355,6 +468,8 @@ const swiperElementsRender = () => {
     })
 };
 swiperElementsRender()
+
+
 
 const swiperAnimation = () => {
     var swiper = new Swiper(".mySwiper", {

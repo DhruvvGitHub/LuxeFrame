@@ -1,3 +1,77 @@
+.loader {
+    width: 100%;
+    height: 100vh;
+    background-color: var(--tertiary-black);
+    position: absolute;
+    z-index: 8;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+}
+
+.loader .counter {
+    overflow: hidden;
+}
+
+.loader h1 {
+    font-size: 400px;
+    line-height: 0.86;
+    font-family: reg;
+    color: var(--green);
+}
+
+.menu-bar {
+    width: 100%;
+    height: 0vh;
+    background-color: #1f1f1f;
+    position: absolute;
+    top: 0%;
+    z-index: 5;
+}
+
+.menu-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-bar .menu-link {
+    height: 83px;
+    overflow: hidden;
+}
+
+.menu-bar .menu-links{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-bar .menu-links a {
+    width: fit-content;
+    font-family: reg;
+    font-size: 80px;
+    line-height: 1;
+    display: block;
+    cursor: pointer;
+    position: relative;
+}
+
+.menu-bar .menu-links a::after {
+    content: "";
+    width: 0%;
+    height: 1px;
+    position: absolute;
+    top: 100%;
+    left: 0%;
+    background-color: white;
+    transition: all ease 0.3s;
+}
+
+.menu-bar .menu-links a:hover::after {
+    width: 100%;
+}
+
 .hero-section {
     display: flex;
     flex-direction: column;
@@ -23,9 +97,12 @@
     padding: 0px 32px;
 }
 
+nav {
+    mix-blend-mode: difference;
+}
+
 nav h5 {
     letter-spacing: 3px;
-    mix-blend-mode: difference;
 }
 
 .nav-right {
@@ -44,6 +121,7 @@ nav h5 {
     align-items: center;
     justify-content: center;
     gap: 8px;
+    cursor: pointer;
 }
 
 .hero-box {
@@ -51,6 +129,29 @@ nav h5 {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+}
+
+.hero-hover-images {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 3;
+}
+
+.item {
+    position: absolute;
+    width: 200px;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .hero-box .hero-title-mobile {
@@ -208,6 +309,7 @@ nav h5 {
 
 .services-div {
     width: 100%;
+    user-select: none;
 }
 
 .service {
@@ -218,23 +320,23 @@ nav h5 {
     padding: 28px 0px;
     border-bottom: 1px solid #222;
     position: relative;
-    z-index: 3;
-    overflow: hidden;
+    z-index: 1;
 }
 
-.service::before {
+.service::after {
     content: "";
     width: 100%;
-    height: 100%;
+    height: 0%;
     background-color: var(--green);
     position: absolute;
-    top: 100%;
+    bottom: 0;
     z-index: -1;
-    transition: all ease 0.3s;
+    transition: height ease 0.3s;
+    transform-origin: bottom; 
 }
 
-.service:hover::before {
-    top: 0%;
+.service:hover::after {
+    height: 100%; 
 }
 
 .service-left {
@@ -243,6 +345,29 @@ nav h5 {
     gap: 50px;
 }
 
+.service-image {
+    width: 0px;
+    height: 500px;
+    position: absolute;
+    z-index: 8;
+    pointer-events: none;
+}
+
+.service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.service .service-overlay {
+    width: 100%;
+    height: 0%;
+    background-color: var(--green);
+    position: absolute;
+    top: 100%;
+    display: none;
+    z-index: -1;
+}
 
 
 /* ABOUT-US SECTION  */
@@ -380,6 +505,7 @@ nav h5 {
   footer {
     height: 75vh;
     background-color: #1F1F1F;
+    overflow: hidden;
   }
 
   .footer-upper {
