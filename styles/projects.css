@@ -69,13 +69,14 @@ nav h5 {
 }
 
 .hero-footer svg {
-    animation: heroFooterSvgAnimation 1s linear  infinite alternate;
+    animation: heroFooterSvgAnimation 1s linear infinite alternate;
 }
 
 @keyframes heroFooterSvgAnimation {
     0% {
         transform: translateY(0%);
     }
+
     100% {
         transform: translateY(90%);
     }
@@ -127,6 +128,10 @@ nav h5 {
     gap: 20px;
 }
 
+.project-cards-cards-1 .card:nth-child(1) {
+    height: fit-content;
+}
+
 .project-cards-cards .card:nth-child(2) {
     height: fit-content;
 }
@@ -134,7 +139,7 @@ nav h5 {
 .project-cards-cards .card:nth-child(3) {
     height: fit-content;
 }
- 
+
 .project-cards-cards .card:nth-child(6) {
     height: fit-content;
 }
@@ -192,41 +197,41 @@ footer {
     height: 75vh;
     background-color: #1F1F1F;
     overflow: hidden;
-  }
+}
 
-  .footer-upper {
+.footer-upper {
     display: flex;
     gap: 380px;
     padding: 120px 40px;
-  }
+}
 
-  .ftr-upper-left h3 {
+.ftr-upper-left h3 {
     font-size: 25px;
     font-family: light;
     font-weight: 600;
-  }
+}
 
-  .ftr-upper-right {
+.ftr-upper-right {
     display: flex;
     gap: 250px;
-  }
+}
 
-  .ftr-upper-right-link {
+.ftr-upper-right-link {
     display: flex;
     flex-direction: column;
     gap: 10px;
-  }
+}
 
-  .ftr-upper-right-link a {
+.ftr-upper-right-link a {
     width: fit-content;
     text-decoration: none;
     color: var(--white);
     font-family: light;
     font-size: 18px;
     position: relative;
-  }
+}
 
-  .ftr-upper-right-link a::after {
+.ftr-upper-right-link a::after {
     content: "";
     width: 0%;
     height: 1px;
@@ -235,15 +240,143 @@ footer {
     left: 0%;
     background-color: var(--white);
     transition: all ease 0.3s;
-  }
+}
 
-  .ftr-upper-right-link a:hover::after {
+.ftr-upper-right-link a:hover::after {
     width: 100%;
-  }
+}
 
-  .footer-lower h1{
+.footer-lower h1 {
     font-family: light;
     color: #323232;
     font-size: 20vw;
     line-height: 19vw;
-  }
+}
+
+
+
+@media (max-width: 600px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    /* HERO SECTION  */
+    .hero-hover-images {
+        display: none;
+    }
+
+    .nav-right .nav-circle {
+        width: 40px;
+        height: 40px;
+    }
+
+    .nav-right .nav-circle svg {
+        width: 25px;
+    }
+
+    .main-nav .nav-wrapper {
+        padding: 0px 16px;
+    }
+
+    .hero-title-desktop {
+        display: none;
+    }
+
+    .hero-box .hero-title-mobile {
+        display: block;
+    }
+
+
+
+    /* PROJECTS SECTION  */
+    .projects-section-header {
+        padding: 140px 0px;
+        padding-bottom: 0px;
+    }
+
+    .projects-section .empty-div {
+        display: none;
+    }
+
+    .projects-section .text {
+        width: 100%;
+        padding-right: 0px;
+    }
+
+    .projects-section-header-text-desktop {
+        display: none;
+    }
+
+    .projects-section-header-text-mobile {
+        display: block;
+    }
+
+    .project-cards-cards {
+        gap: 20px;
+    }
+
+    .project-cards-cards .card {
+        width: 100%;
+    }
+
+    .project-cards-cards .card:nth-child(3),
+    .project-cards-cards .card:nth-child(4),
+    .project-cards-cards .card:nth-child(5) {
+        width: 100%;
+    }
+
+    .project-cards-cards .card:nth-child(4) {
+        margin-bottom: 165px;
+    }
+
+    .project-cards-cards .card:nth-child(5) {
+        margin-bottom: 230px;
+    }
+
+
+    /* FOOTER SECTION */
+    footer {
+        height: 75vh;
+        background-color: #1f1f1f;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        gap: 40px;
+    }
+
+    .footer-upper {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        padding: 120px 40px;
+    }
+
+    .ftr-upper-left h3 {
+        font-size: 22px;
+        font-family: light;
+        font-weight: 600;
+    }
+
+    .ftr-upper-right {
+        display: flex;
+        gap: 80px;
+    }
+
+    .ftr-upper-right-link {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .ftr-upper-right-link a:hover::after {
+        width: 100%;
+    }
+
+    .footer-lower h1 {
+        font-family: light;
+        color: #323232;
+        font-size: 20vw;
+        line-height: 19vw;
+    }
+}
