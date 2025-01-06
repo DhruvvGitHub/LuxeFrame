@@ -25,13 +25,10 @@
                     <a>HOME</a>
                 </div>
                 <div class="menu-link">
-                    <a>PROJECTS</a>
+                    <a onclick="window.location.href='projects.html'">PROJECTS</a>
                 </div>
                 <div class="menu-link">
-                    <a>ABOUT</a>
-                </div>
-                <div class="menu-link">
-                    <a>CONTACT US</a>
+                    <a onclick="window.location.href='contact-us.html'">CONTACT US</a>
                 </div>
             </div>
         </div>
@@ -59,7 +56,7 @@
             </nav>
 
             <div class="hero-box">
-                <div class="hero-hover-images"></div>
+                <!-- <div class="hero-hover-images"></div> -->
                 <div class="hero-title-desktop">
                     <h1 class="title">HIGH-END VISUAL FOR</h1>
                     <h1 class="title">EXCLUSIVE EXQUISITE</h1>
@@ -89,13 +86,14 @@
             <div class="projects-section-header">
                 <div class="empty-div"></div>
                 <div class="text">
-                    <h3 class="sub-title"></h3>
-                    <h3 class="sub-title">LuxeFrame is a visionary production</h3>
-                    <h3 class="sub-title">company crafting captivating, awe-inspiring</h3>
-                    <h3 class="sub-title">visual experiences through photography</h3>
-                    <h3 class="sub-title">and videography for individuals, businesses, and organizations seeking
+                    <h3 class="sub-title projects-section-header-text-desktop">LuxeFrame is a visionary production</h3>
+                    <h3 class="sub-title projects-section-header-text-desktop">company crafting captivating, awe-inspiring</h3>
+                    <h3 class="sub-title projects-section-header-text-desktop">visual experiences through photography</h3>
+                    <h3 class="sub-title projects-section-header-text-desktop">and videography for individuals, businesses, and organizations seeking
                         timeless, high-</h3>
-                    <h3 class="sub-title">end imagery.</h3>
+                    <h3 class="sub-title projects-section-header-text-desktop">end imagery.</h3>
+                    <h3 class="sub-title projects-section-header-text-mobile">
+                        LuxeFrame is a visionary production company crafting captivating, awe-inspiring visual experiences through photography and videography for individuals, businesses organizations seeking timeless, high- end imagery.</h3>
                 </div>
             </div>
 
@@ -197,10 +195,13 @@
 
         <section class="about-us">
             <div class="lower-container">
-                <div class="text">
+                <div class="text about-us-head-desktop">
                     <h3>We ignite the passion that</h3>
-                    <h3>comples your auidence to book</h3>
+                    <h3>comples your audience to book</h3>
                     <h3>their next unforgettable stay.</h3>
+                </div>
+                <div class="text about-us-head-mobile">
+                    <h3>We ignite the passion that comples your audience to book their next unforgettable stay.</h3>
                 </div>
                 <button class="cta-button">MORE ABOUT US</button>
             </div>
@@ -358,6 +359,9 @@
                     <h5 class="sub-title">way. We're confident you'll feel the same and</h5>
                     <h5 class="sub-title">enjoy a seamless, rewarding partnership with us!</h5>
                 </div>
+                <div class="teestimonials-heading-text-mobile">
+                    <h5 class="sub-title">Our clients had an amazing experience collaborating with us, praising our dedication, creativity, and professionalism every step of the way. We're confident you'll feel the same and enjoy a seamless, rewarding partnership with us!</h5>
+                </div>
             </div>
 
             <div class="swiper mySwiper">
@@ -403,6 +407,7 @@
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="lenis.js"></script>
+    <script src="menuAnimation.js"></script>
     <script src="script.js"></script>
 
 </body>

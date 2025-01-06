@@ -28,120 +28,84 @@ loadingAnimation();
 
 
 
-const menuAnimation = () => {
-    const menuCircle = document.querySelector(".nav-circle");
-    let flag = false;
-
-    const tl = gsap.timeline({ paused: true });
-
-    tl.to(".nav-circle .svg-1", {
-        rotate: "50deg",
-        y: 6
-    }, "a")
-    .to(".nav-circle .svg-2", {
-        rotate: "-50deg",
-        y: -2.5
-    }, "a")
-    .to(".menu-bar", {
-        height: "100vh",
-        top: "0%",
-        ease: "power2.out",
-        duration: 0.7
-    })
-    .from(".menu-bar .menu-link a", {
-        y: -200,
-        stagger: 0.05,
-        delay: -0.3
-    })
-
-    menuCircle.addEventListener("click", () => {
-        if (!flag) {
-            tl.play(); 
-        } else {
-            tl.reverse(); 
-        }
-        flag = !flag; 
-    });
-};
-
-menuAnimation();
 
 
 
-document.addEventListener("DOMContentLoaded", () => {
-    const heroHoverAnimation = () => {
-        const container = document.querySelector(".hero-hover-images");
 
-        let imageIndex = 1;
-        let animationTimeout = null;
-        let currentlyPlaying = false;
+// document.addEventListener("DOMContentLoaded", () => {
+//     const heroHoverAnimation = () => {
+//         const container = document.querySelector(".hero-hover-images");
 
-        // Track previous mouse position
-        let prevX = 0;
-        let prevY = 0;
-        const moveThreshold = 60; // Minimum distance to trigger a new item
+//         let imageIndex = 1;
+//         let animationTimeout = null;
+//         let currentlyPlaying = false;
 
-        function addNewItem(x, y) {
-            const newItem = document.createElement("div");
-            newItem.className = "item";
-            newItem.style.left = `${x}px`;
-            newItem.style.top = `${y}px`;
+//         // Track previous mouse position
+//         let prevX = 0;
+//         let prevY = 0;
+//         const moveThreshold = 60; // Minimum distance to trigger a new item
 
-            const img = document.createElement("img");
-            img.src = `./images/home-hover-images/${imageIndex}.webp`;
-            newItem.appendChild(img);
-            imageIndex = (imageIndex % 15) + 1;
+//         function addNewItem(x, y) {
+//             const newItem = document.createElement("div");
+//             newItem.className = "item";
+//             newItem.style.left = `${x}px`;
+//             newItem.style.top = `${y}px`;
 
-            container.appendChild(newItem);
-            manageItemLimit();
-        }
+//             const img = document.createElement("img");
+//             img.src = `./images/home-hover-images/${imageIndex}.webp`;
+//             newItem.appendChild(img);
+//             imageIndex = (imageIndex % 15) + 1;
 
-        function manageItemLimit() {
-            while (container.children.length > 15) {
-                container.removeChild(container.firstChild);
-            }
-        }
+//             container.appendChild(newItem);
+//             manageItemLimit();
+//         }
 
-        function startAnimation() {
-            if (currentlyPlaying || container.children.length === 0) return;
-            currentlyPlaying = true;
+//         function manageItemLimit() {
+//             while (container.children.length > 15) {
+//                 container.removeChild(container.firstChild);
+//             }
+//         }
 
-            gsap.to(".item", {
-                scale: 1,
-                opacity: 0,
-                duration: 0.5,
-                stagger: 2,
-                ease: "power.inOut",
-                onComplete: function () {
-                    this.targets().forEach((item) => {
-                        if (item.parentNode) {
-                            item.parentNode.removeChild(item);
-                        }
-                    });
+//         function startAnimation() {
+//             if (currentlyPlaying || container.children.length === 0) return;
+//             currentlyPlaying = true;
 
-                    currentlyPlaying = false;
-                },
-            });
-        }
+//             gsap.to(".item", {
+//                 scale: 1,
+//                 opacity: 0,
+//                 duration: 0.5,
+//                 stagger: 2,
+//                 ease: "power.inOut",
+//                 onComplete: function () {
+//                     this.targets().forEach((item) => {
+//                         if (item.parentNode) {
+//                             item.parentNode.removeChild(item);
+//                         }
+//                     });
 
-        container.addEventListener("mousemove", (event) => {
-            const { pageX, pageY } = event;
+//                     currentlyPlaying = false;
+//                 },
+//             });
+//         }
 
-            // Check if the mouse has moved beyond the threshold
-            const distance = Math.sqrt((pageX - prevX) ** 2 + (pageY - prevY) ** 2);
-            if (distance > moveThreshold) {
-                prevX = pageX;
-                prevY = pageY;
+//         container.addEventListener("mousemove", (event) => {
+//             const { pageX, pageY } = event;
 
-                clearTimeout(animationTimeout);
-                addNewItem(pageX, pageY);
-                animationTimeout = setTimeout(startAnimation, 200);
-            }
-        });
-    };
+//             // Check if the mouse has moved beyond the threshold
+//             const distance = Math.sqrt((pageX - prevX) ** 2 + (pageY - prevY) ** 2);
+//             if (distance > moveThreshold) {
+//                 prevX = pageX;
+//                 prevY = pageY;
 
-    heroHoverAnimation();
-});
+//                 clearTimeout(animationTimeout);
+//                 addNewItem(pageX, pageY);
+//                 animationTimeout = setTimeout(startAnimation, 200);
+//             }
+//         });
+//     };
+
+//     heroHoverAnimation();
+// });
 
 
 
