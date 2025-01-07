@@ -32,80 +32,80 @@ loadingAnimation();
 
 
 
-// document.addEventListener("DOMContentLoaded", () => {
-//     const heroHoverAnimation = () => {
-//         const container = document.querySelector(".hero-hover-images");
+document.addEventListener("DOMContentLoaded", () => {
+    const heroHoverAnimation = () => {
+        const container = document.querySelector(".hero-hover-images");
 
-//         let imageIndex = 1;
-//         let animationTimeout = null;
-//         let currentlyPlaying = false;
+        let imageIndex = 1;
+        let animationTimeout = null;
+        let currentlyPlaying = false;
 
-//         // Track previous mouse position
-//         let prevX = 0;
-//         let prevY = 0;
-//         const moveThreshold = 60; // Minimum distance to trigger a new item
+        // Track previous mouse position
+        let prevX = 0;
+        let prevY = 0;
+        const moveThreshold = 60; // Minimum distance to trigger a new item
 
-//         function addNewItem(x, y) {
-//             const newItem = document.createElement("div");
-//             newItem.className = "item";
-//             newItem.style.left = `${x}px`;
-//             newItem.style.top = `${y}px`;
+        function addNewItem(x, y) {
+            const newItem = document.createElement("div");
+            newItem.className = "item";
+            newItem.style.left = `${x}px`;
+            newItem.style.top = `${y}px`;
 
-//             const img = document.createElement("img");
-//             img.src = `./images/home-hover-images/${imageIndex}.webp`;
-//             newItem.appendChild(img);
-//             imageIndex = (imageIndex % 15) + 1;
+            const img = document.createElement("img");
+            img.src = `./images/home-hover-images/${imageIndex}.webp`;
+            newItem.appendChild(img);
+            imageIndex = (imageIndex % 15) + 1;
 
-//             container.appendChild(newItem);
-//             manageItemLimit();
-//         }
+            container.appendChild(newItem);
+            manageItemLimit();
+        }
 
-//         function manageItemLimit() {
-//             while (container.children.length > 15) {
-//                 container.removeChild(container.firstChild);
-//             }
-//         }
+        function manageItemLimit() {
+            while (container.children.length > 15) {
+                container.removeChild(container.firstChild);
+            }
+        }
 
-//         function startAnimation() {
-//             if (currentlyPlaying || container.children.length === 0) return;
-//             currentlyPlaying = true;
+        function startAnimation() {
+            if (currentlyPlaying || container.children.length === 0) return;
+            currentlyPlaying = true;
 
-//             gsap.to(".item", {
-//                 scale: 1,
-//                 opacity: 0,
-//                 duration: 0.5,
-//                 stagger: 2,
-//                 ease: "power.inOut",
-//                 onComplete: function () {
-//                     this.targets().forEach((item) => {
-//                         if (item.parentNode) {
-//                             item.parentNode.removeChild(item);
-//                         }
-//                     });
+            gsap.to(".item", {
+                scale: 1,
+                opacity: 0,
+                duration: 0.5,
+                stagger: 2,
+                ease: "power.inOut",
+                onComplete: function () {
+                    this.targets().forEach((item) => {
+                        if (item.parentNode) {
+                            item.parentNode.removeChild(item);
+                        }
+                    });
 
-//                     currentlyPlaying = false;
-//                 },
-//             });
-//         }
+                    currentlyPlaying = false;
+                },
+            });
+        }
 
-//         container.addEventListener("mousemove", (event) => {
-//             const { pageX, pageY } = event;
+        container.addEventListener("mousemove", (event) => {
+            const { pageX, pageY } = event;
 
-//             // Check if the mouse has moved beyond the threshold
-//             const distance = Math.sqrt((pageX - prevX) ** 2 + (pageY - prevY) ** 2);
-//             if (distance > moveThreshold) {
-//                 prevX = pageX;
-//                 prevY = pageY;
+            // Check if the mouse has moved beyond the threshold
+            const distance = Math.sqrt((pageX - prevX) ** 2 + (pageY - prevY) ** 2);
+            if (distance > moveThreshold) {
+                prevX = pageX;
+                prevY = pageY;
 
-//                 clearTimeout(animationTimeout);
-//                 addNewItem(pageX, pageY);
-//                 animationTimeout = setTimeout(startAnimation, 200);
-//             }
-//         });
-//     };
+                clearTimeout(animationTimeout);
+                addNewItem(pageX, pageY);
+                animationTimeout = setTimeout(startAnimation, 200);
+            }
+        });
+    };
 
-//     heroHoverAnimation();
-// });
+    heroHoverAnimation();
+});
 
 
 
@@ -231,7 +231,6 @@ servicesRenderAndAnimation = () => {
 
             gsap.to(image, {
               width: "300px",
-              opacity: 1,
               x: e.clientX - rect.left - 40,
               y: e.clientY - rect.top - 80,
               duration: 0.5,
@@ -267,7 +266,6 @@ servicesRenderAndAnimation = () => {
 
             gsap.to(image, {
                 width: "0px",
-                opacity: 0,
                 duration: 0.5,
                 ease: "power1.out",
               });
@@ -284,39 +282,44 @@ const aboutUsAnimation = () => {
         scrollTrigger: {
             trigger: ".about-us",
             scroller: "body",
-            start: "0% 70%",
-            end: "0% 10%",
-            // markers: true,
+            start: "10% 70%",
+            end: "10% 10%",
             scrub: 2,
+            markers: true
         },
     });
 
-    tl.from(
-        ".lower-container",
-        {
-            opacity: 0,
-            transform: "translateY(10%)",
-        },
-        "a"
-    )
-        .to(
-            [".img-1", ".img-3"],
-            {
-                rotate: "-10deg",
-                x: "-400",
-            },
-            "a"
-        )
-        .to(
-            [".img-2", ".img-4"],
-            {
-                rotate: "10deg",
-                x: "400",
-            },
-            "a"
-        );
+    tl.from(".lower-container", {
+        opacity: 0,
+        transform: "translateY(20%)",
+    },"a");
+
+    tl.to(".img-1", {
+        rotate: "-10deg",
+        x: "-400",
+    },"a");
+
+    tl.to(".img-2", {
+        rotate: "10deg",
+        x: "400",
+        delay: 0.05,
+    },"a");
+
+    tl.to(".img-3", {
+        rotate: "-10deg",
+        x: "-400",
+        delay: 0.06,
+    },"a");
+
+    tl.to(".img-4", {
+        rotate: "10deg",
+        x: "400",
+        delay: 0.08,
+    },"a");
 };
+
 aboutUsAnimation();
+
 
 
 
