@@ -285,7 +285,6 @@ const aboutUsAnimation = () => {
             start: "10% 70%",
             end: "10% 10%",
             scrub: 2,
-            markers: true
         },
     });
 
